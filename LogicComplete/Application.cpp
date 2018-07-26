@@ -4,14 +4,16 @@
 
 void Application::draw()
 {
-    mainWindow.clear();
-    //TODO
+    mainWindow.clear(sf::Color::White);
+
+    workspace.draw();
+
     mainWindow.display();
 }
 
 void Application::update()
 {
-    //TODO
+    workspace.update();
 }
 
 void Application::handleEvents()
@@ -29,8 +31,12 @@ bool Application::isRunning() const
     return mainWindow.isOpen();
 }
 
-Application::Application()
+Application::Application() :
+     workspace(mainWindow)
 {
     //TODO Options initialized from config file 
     mainWindow.create(sf::VideoMode(400, 300), "LogicComplete");
+
+    workspace.setSize(100, 100);
+    workspace.setPos(100, 100);
 }
