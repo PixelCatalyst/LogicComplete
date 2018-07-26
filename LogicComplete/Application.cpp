@@ -2,6 +2,14 @@
 
 #include "Application.h"
 
+void Application::adjustWindow(unsigned width, unsigned height)
+{
+    sf::Vector2f center(width / 2.0, height / 2.0);
+    sf::Vector2f size(width, height);
+    sf::View adjusted(center, size);
+    mainWindow.setView(adjusted);
+}
+
 void Application::draw()
 {
     mainWindow.clear(sf::Color::White);
@@ -23,6 +31,8 @@ void Application::handleEvents()
     {
         if (event.type == sf::Event::Closed)
             mainWindow.close();
+        else if (event.type == sf::Event::Resized)
+            adjustWindow(event.size.width, event.size.height);
     }
 }
 
@@ -32,7 +42,7 @@ bool Application::isRunning() const
 }
 
 Application::Application() :
-     workspace(mainWindow)
+    workspace(mainWindow)
 {
     //TODO Options initialized from config file 
     mainWindow.create(sf::VideoMode(400, 300), "LogicComplete");
