@@ -2,38 +2,15 @@
 
 #include "Application.h"
 
-void Application::adjustWindow(unsigned width, unsigned height)
-{
-    sf::Vector2f center(width / 2.0, height / 2.0);
-    sf::Vector2f size(width, height);
-    sf::View adjusted(center, size);
-    mainWindow.setView(adjusted);
-}
-
 void Application::draw()
 {
-    mainWindow.clear(sf::Color::White);
-
-    workspace.draw();
-
-    mainWindow.display();
+    mainWindow.draw();
 }
 
 void Application::update()
 {
+    mainWindow.dispatchEvents();
     workspace.update();
-}
-
-void Application::handleEvents()
-{
-    sf::Event event;
-    while (mainWindow.pollEvent(event))
-    {
-        if (event.type == sf::Event::Closed)
-            mainWindow.close();
-        else if (event.type == sf::Event::Resized)
-            adjustWindow(event.size.width, event.size.height);
-    }
 }
 
 bool Application::isRunning() const
@@ -41,12 +18,14 @@ bool Application::isRunning() const
     return mainWindow.isOpen();
 }
 
-Application::Application() :
-    workspace(mainWindow)
+Application::Application()
 {
     //TODO Options initialized from config file 
-    mainWindow.create(sf::VideoMode(400, 300), "LogicComplete");
+    mainWindow.init(800, 600, "LogicComplete");
+    mainWindow.attachWidget(&workspace);
 
-    workspace.setSize(100, 100);
-    workspace.setPos(100, 100);
+    workspace.setSize(800, 500);
+    workspace.setPos(0, 50);
+    using gui::Align;
+    workspace.setAnchor(gui::Anchor(Align::stretch, Align::stretch));
 }

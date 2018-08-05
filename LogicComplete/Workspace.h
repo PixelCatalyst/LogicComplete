@@ -1,18 +1,27 @@
 #pragma once
 
-class Workspace
+#include "Widget.h"
+
+namespace gui
 {
-private:
-    sf::RenderWindow& parentWindow;
-    sf::RenderTexture renderTarget;
-    sf::View camera;
-    sf::Sprite presentation;
-public:
-    void draw();
-    void update();
+    class Workspace : public gui::Widget
+    {
+    private:
+        sf::RenderTexture renderTarget;
+        sf::View camera;
+        sf::Sprite presentation;
 
-    void setPos(unsigned x, unsigned y);
-    void setSize(unsigned width, unsigned height);
+        void applySize(int width, int height) override;
+    public:
+        const sf::Sprite& draw() override;
+        void update() override;
 
-    Workspace(sf::RenderWindow& parentWindow);
-};
+        virtual sf::Vector2i getPos() const override;
+        void setPos(int x, int y) override;
+        sf::Vector2i getVisibleSize() const override;
+
+        void onResize(const VectorChange2i& parentSize) override;
+
+        Workspace();
+    };
+}

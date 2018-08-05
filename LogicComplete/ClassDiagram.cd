@@ -1,37 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
   <Class Name="Application">
-    <Position X="0.75" Y="1.25" Width="1.5" />
+    <Position X="4" Y="8.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAABAAABBAQAIAAAAABAQAAAQAAAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAAAAABAAAABAQAIAAAAABAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>Application.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="mainWindow" />
       <Field Name="workspace" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Widget">
-    <Position X="6" Y="1.75" Width="1.5" />
+  <Class Name="gui::Window">
+    <Position X="1" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAAQAABAAAAAAAIAAAAAAAAAAgAAAAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAAAAAABAgIAAIIIAAAAAIAAAAAIAAAAAICACAAA=</HashCode>
+      <FileName>Window.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gui::Workspace">
+    <Position X="7" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAgBgAAAAAAIAAAAAAAAIIAIAgAAAAAAEAAA=</HashCode>
+      <FileName>Workspace.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gui::Widget">
+    <Position X="7" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAACQAIDQAAgAAJIAQBAAAAAIIgICBAAQCAIEAAA=</HashCode>
       <FileName>Widget.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="anchor" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Anchor">
-    <Position X="8.5" Y="2.25" Width="1.5" />
+  <Class Name="gui::Anchor">
+    <Position X="9.5" Y="3" Width="1.5" />
+    <AssociationLine Name="horizontal" Type="gui::Align" FixedToPoint="true">
+      <Path>
+        <Point X="11" Y="4.125" />
+        <Point X="12.5" Y="4.125" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="vertical" Type="gui::Align" FixedToPoint="true">
+      <Path>
+        <Point X="11" Y="3.438" />
+        <Point X="12.5" Y="3.438" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEEAAACAAAAAAAAAAAAAAAACAAAAAAAQAAAAAAA=</HashCode>
       <FileName>Anchor.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="horizontal" />
+      <Field Name="vertical" />
+    </ShowAsAssociation>
   </Class>
-  <Class Name="Workspace">
-    <Position X="3.5" Y="1" Width="1.5" />
+  <Class Name="gui::Align">
+    <Position X="12.5" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="gui::Align::Param">
+        <Compartments>
+          <Compartment Name="Nested Types" Collapsed="false" />
+        </Compartments>
+        <NestedTypes>
+          <Enum Name="gui::Align::Param::Type">
+            <TypeIdentifier>
+              <NewMemberFileName>Anchor.h</NewMemberFileName>
+            </TypeIdentifier>
+          </Enum>
+        </NestedTypes>
+        <TypeIdentifier>
+          <NewMemberFileName>Anchor.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AgAAAACAAgBgAAgAAAIAAAAAAAAAAAAAgAAAAAAEAAA=</HashCode>
-      <FileName>Workspace.h</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAIABAEAAIAAAIAEAA=</HashCode>
+      <FileName>Anchor.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

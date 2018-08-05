@@ -2,30 +2,67 @@
 
 #include "Workspace.h"
 
-void Workspace::draw()
+namespace gui
 {
-    renderTarget.clear(sf::Color::Black);
-    presentation.setTexture(renderTarget.getTexture());
-    parentWindow.draw(presentation);
-}
+    const sf::Sprite& Workspace::draw()
+    {
+        renderTarget.clear(sf::Color::Black);
+        //TODO
+        renderTarget.display();
+        presentation.setTexture(renderTarget.getTexture(), true);
+        return presentation;
+    }
 
-void Workspace::update()
-{
-    renderTarget.setView(camera);
-}
+    void Workspace::update()
+    {
+        renderTarget.setView(camera);
+    }
 
-void Workspace::setPos(unsigned x, unsigned y)
-{
-    presentation.setPosition(x, y);
-}
+    sf::Vector2i Workspace::getPos() const
+    {
+        sf::Vector2f exactPos = presentation.getPosition();
+        return sf::Vector2i(exactPos.x, exactPos.y);
+    }
 
-void Workspace::setSize(unsigned width, unsigned height)
-{
-    renderTarget.create(width, height);
-    camera.setSize(sf::Vector2f(width, height));
-    camera.setCenter(sf::Vector2f(width / 2.0, height / 2.0));
-}
+    void Workspace::setPos(int x, int y)
+    {
+        presentation.setPosition(x, y);
+    }
 
-Workspace::Workspace(sf::RenderWindow& parentWindow) :
-    parentWindow(parentWindow)
-{}
+    sf::Vector2i Workspace::getVisibleSize() const
+    {
+        sf::Vector2i visibleSize(0, 0);
+        if (isVisible())
+        {
+            sf::Vector2u targetSize = renderTarget.getSize();
+            visibleSize.x = targetSize.x;
+            visibleSize.y = targetSize.y;
+        }
+        return visibleSize;
+    }
+
+    void Workspace::applySize(int width, int height)
+    {
+        bool targetValid = renderTarget.create(width, height);
+        if (targetValid)
+        {
+            camera.setSize(sf::Vector2f(width, height));
+            camera.setCenter(sf::Vector2f(width / 2.0f, height / 2.0f));
+            show();
+        }
+        else
+            hide();
+    }
+
+    void Workspace::onResize(const VectorChange2i& parentSize)
+    {
+        Widget::onResize(parentSize);
+        //TODO
+    }
+
+    Workspace::Workspace() :
+        Widget(0, 0)
+    {
+        hide();
+    }
+}

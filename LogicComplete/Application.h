@@ -1,18 +1,16 @@
 #pragma once
 
+#include "Window.h"
 #include "Workspace.h"
 
 class Application
 {
 private:
-    sf::RenderWindow mainWindow;
-    Workspace workspace;
-
-    void adjustWindow(unsigned width, unsigned height);
+    gui::Window mainWindow;
+    gui::Workspace workspace;
 public:
     void draw();
     void update();
-    void handleEvents();
 
     bool isRunning() const;
 
